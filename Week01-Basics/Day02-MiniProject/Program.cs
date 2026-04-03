@@ -23,7 +23,8 @@ while (true)
                   "Toplama +\n" +
                   "Çıkarma - \n" +
                   "Çarpma  * \n" +
-                  "Bölme   /");
+                  "Bölme   / \n" +
+                  "Mod     %");
     string islem = Console.ReadLine()!;
     double sonuc = 0;
     string secim;
@@ -62,7 +63,7 @@ while (true)
             }
             break;
         default:
-            Console.WriteLine("Geçersiz işlem");
+            Console.WriteLine("Geçersiz işlem ya da operatör");
             gecerliIslem = false;
             break;
     }
