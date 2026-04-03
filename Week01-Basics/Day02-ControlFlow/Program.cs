@@ -19,7 +19,7 @@
 //1
 
 Console.Write("Yaşınızı girin: ");
-int yas = int.Parse(Console.ReadLine());
+int yas = int.Parse(Console.ReadLine()!);
 
 if (yas >= 18)
 {
@@ -33,7 +33,7 @@ else
 //2
 
 Console.Write("Notunuzu girin: ");
-int not = int.Parse(Console.ReadLine());
+int not = int.Parse(Console.ReadLine()!);
 
 if (not >= 85)
 {
@@ -59,7 +59,7 @@ else
 //3
 
 Console.Write("Bir sayı girin: ");
-int sayi = int.Parse(Console.ReadLine());
+int sayi = int.Parse(Console.ReadLine()!);
 
 if (sayi > 0)
     Console.WriteLine("Sayı pozitif :)");
@@ -74,11 +74,11 @@ else
 Console.WriteLine("2 adet sayi girin: ");
 Console.Write("1. ");
 
-int sayi1 = int.Parse(Console.ReadLine());
+int sayi1 = int.Parse(Console.ReadLine()!);
 
 Console.Write("2. ");
 
-int sayi2 = int.Parse(Console.ReadLine());
+int sayi2 = int.Parse(Console.ReadLine()!);
 
 
 if (sayi1 > sayi2) Console.WriteLine($"{sayi1} olarak girilen ilk sayı büyüktür");
@@ -90,15 +90,15 @@ else Console.WriteLine("Sayılar birbirine eşit");
 Console.WriteLine("3 adet sayi girin: ");
 Console.Write("1. ");
 
-int ilkSayi = int.Parse(Console.ReadLine());
+int ilkSayi = int.Parse(Console.ReadLine()!);
 
 Console.Write("2. ");
 
-int ikinciSayi = int.Parse(Console.ReadLine());
+int ikinciSayi = int.Parse(Console.ReadLine()!);
 
 Console.Write("3. ");
 
-int ucuncuSayi = int.Parse(Console.ReadLine());
+int ucuncuSayi = int.Parse(Console.ReadLine()!);
 
 int enBuyukSayi = ilkSayi;
 
@@ -107,10 +107,10 @@ if (enBuyukSayi < ucuncuSayi) enBuyukSayi = ucuncuSayi;
 Console.WriteLine($"En büyük sayı = {enBuyukSayi}");
 
 
-//6
+//6 Buna çalış ve hep kısa ve öz yazmaya bak - !!! Her durumda değil !!!
 
 Console.Write("Yıl giriniz(YYYY): ");
-int yil = int.Parse(Console.ReadLine());
+int yil = int.Parse(Console.ReadLine()!);
 
 if ((yil % 4 == 0 && yil % 100 != 0) || (yil % 400 == 0))
     Console.WriteLine("Artık yıl");
@@ -120,7 +120,7 @@ else
 //7
 
 Console.Write("Bir gün numarası girin(1-7): ");
-int gun = int.Parse(Console.ReadLine());
+int gun = int.Parse(Console.ReadLine()!);
 
 switch(gun)
 {
@@ -131,7 +131,7 @@ switch(gun)
         Console.WriteLine("Salı");
         break;
     case 3:
-        Console.WriteLine("Çarşmaba");
+        Console.WriteLine("Çarşamba");
         break;
     case 4:
         Console.WriteLine("Perşembe");
@@ -145,12 +145,15 @@ switch(gun)
     case 7:
         Console.WriteLine("Pazar");
         break;
+    default:
+        Console.WriteLine("Geçersiz işlem");
+        break;
 }
 
 //8
 
 Console.Write("İstediğiniz bir ayın sayı karşılığını girin(1-12): ");
-int ay = int.Parse(Console.ReadLine());
+int ay = int.Parse(Console.ReadLine()!);
 
 switch (ay)
 {
@@ -181,11 +184,11 @@ switch (ay)
 
 Console.Write("2 adet sayı giriniz:\n" +
               "1. ");
-int firstNumber = int.Parse(Console.ReadLine());
+double firstNumber = double.Parse(Console.ReadLine()!);
 
 Console.Write("2. ");
 
-int secondNumber = int.Parse(Console.ReadLine());
+double secondNumber = double.Parse(Console.ReadLine()!);
 
 Console.Write("İşlem operatörü seçiniz(1-4): \n" +
               "1. Toplama\n" +
@@ -193,8 +196,9 @@ Console.Write("İşlem operatörü seçiniz(1-4): \n" +
               "3. Çarpma\n" +
               "4. Bölme\n" +
               "Seçiniz: ");
-int islem = int.Parse(Console.ReadLine());
-int sonuc;
+
+int islem = int.Parse(Console.ReadLine()!);
+double sonuc;
 
 switch(islem)
 {
@@ -211,15 +215,19 @@ switch(islem)
         Console.WriteLine(sonuc);
         break;
     case 4:
-        sonuc = firstNumber / secondNumber;
-        Console.WriteLine(sonuc);
+        if (secondNumber == 0) Console.WriteLine("Bölme işleminde ikinci sayı 0(sıfır) olamaz");
+        else
+        {
+            sonuc = firstNumber / secondNumber;
+            Console.WriteLine(sonuc);
+        }
         break;
 }
 
 //10
 
 Console.Write("Hava kaç derece(Celsius): ");
-int havaSicakligi = int.Parse(Console.ReadLine());
+int havaSicakligi = int.Parse(Console.ReadLine()!);
 
 if (havaSicakligi <= 0)
     Console.WriteLine("Dondurucu");
@@ -231,3 +239,75 @@ else
     Console.WriteLine("Sıcak");
 
 //11
+
+Console.Write("Sayı giriniz: ");
+
+int number = int.Parse(Console.ReadLine()!);
+
+string islemSonucu = (number % 2 == 0) ? "Çift" : "Tek";
+
+Console.WriteLine(islemSonucu);
+
+//12
+
+Console.Write("2 Cümle yazınız: \n" +
+              "1. ");
+
+string ilkCumle = Console.ReadLine()!;
+
+Console.Write("2. ");
+
+string ikinciCumle = Console.ReadLine()!;
+
+
+string uzunCumle = (ilkCumle.Length > ikinciCumle.Length) ? ilkCumle : ikinciCumle;
+
+Console.WriteLine($"En uzun cümle '{uzunCumle}' ");
+
+//13   
+
+Console.Write("Yaşınızı girin: ");
+
+int kisininYasi = int.Parse(Console.ReadLine()!);
+
+Console.Write("Öğrenci misiniz Evet için E/Hayır için H basın: ");
+
+char ogrenciMi = char.Parse(Console.ReadLine()!); 
+
+if (kisininYasi >= 18 && kisininYasi <= 65 && ogrenciMi == 'H') Console.WriteLine("Tam");
+else Console.WriteLine("İndirimli");
+
+//14
+
+Console.Write("Rolünüz nedir?: ");
+
+string rol = Console.ReadLine()!;
+
+if (rol == "admin" || rol == "moderatör")
+    Console.WriteLine("Erişim izniniz var");
+else
+    Console.WriteLine("Erişim izniniz yok");
+
+//15
+
+Console.Write("Cinsiyetinizi girin Erkek için E / Kız için K: ");
+
+char cinsiyetSecimi = char.Parse(Console.ReadLine()!);
+
+Console.Write("Yaşınızı girin: ");
+
+yas = int.Parse(Console.ReadLine()!);
+
+if (cinsiyetSecimi == 'K')
+    Console.WriteLine("Askerlikten muaf");
+else
+{
+    if (yas < 20)
+        Console.WriteLine($"Askerliğe kalan süre {20 - yas}");
+    else
+    {
+        Console.WriteLine("Askerlik için elverişli");
+    }
+}
+ 
+
