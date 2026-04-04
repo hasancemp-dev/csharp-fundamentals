@@ -165,13 +165,4 @@
 //ortalama = (double)toplam / 10;
 
 //Console.WriteLine($"Girdiğiniz sayıların en büyüğü: {max}, en küçüğü: {min}, ortalaması {ortalama}");
-
-/*
-🔨 Mini Proje: Öğrenci Not Sistemi
-Kullanıcıdan öğrenci sayısını al
-Her öğrenci için isim ve not al (iki dizi: isimler[] ve notlar[])
-Harf notu hesapla
-En yüksek, en düşük, sınıf ortalaması göster
-Ortalamanın üstündeki öğrencileri listele
-
-*/
+ 
