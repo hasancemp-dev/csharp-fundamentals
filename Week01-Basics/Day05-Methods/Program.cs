@@ -1,6 +1,4 @@
 ﻿//1:  void metod: parametre almadan "Merhaba Dünya" yazdıran metod
-using System.Runtime.InteropServices;
-
 void IlkCumle()
 {
     Console.WriteLine("Merhaba Dünya");
@@ -54,7 +52,6 @@ bool AsalMi(int a)
     for(int i = 2; i<a; i++)
     {
         if (a % i == 0) { asalMi = false; break; }
-        else asalMi = true;
     }
     return asalMi ;
 }
@@ -83,8 +80,26 @@ Console.WriteLine(Geometri.DaireAlani(3));
 
 //9:  Varsayılan parametre: KDV hesapla(tutar, kdvOrani = 0.20)
 
-//10: ref kullanarak: iki sayının yerini değiştir (swap)
+double KDVHesapla(double tutar, double kdvOrani = 0.20)
+{
+    return tutar + (tutar * kdvOrani);
+}
 
+Console.Write("Tutar girin: ");
+double tutar = double.Parse(Console.ReadLine()!);
+Console.WriteLine($"KDV Dahil tutar: {KDVHesapla(tutar)}");
+
+//10: ref kullanarak: iki sayının yerini değiştir (swap)
+void Swap(ref int a,ref int b)
+{
+    int gecici = a;
+    a = b;
+    b = gecici;
+}
+
+int x = 5, y = 10;
+Swap(ref x, ref y);
+Console.WriteLine($"Yeni değerler x: {x}, y: {y}");
 
 
 
