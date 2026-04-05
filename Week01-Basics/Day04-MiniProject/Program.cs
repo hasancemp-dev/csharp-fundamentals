@@ -1,23 +1,28 @@
 ﻿
 //1.Kullanıcıdan öğrenci sayısını al
 Console.Write("Öğrenci sayısı: ");
+
 int ogrenciSayisi = int.Parse(Console.ReadLine()!);
-Console.Write(ogrenciSayisi+ "\n");
+
 //2. Her öğrenci için isim ve not al (iki dizi: isimler[] ve notlar[])
 string[] isimler = new string[ogrenciSayisi];
 string isim;
 int[] notlar = new int[ogrenciSayisi];
 int not = 0;
-Console.Write($"══════════════════════════\n" +
+
+
+Console.WriteLine($"══════════════════════════\n" +
               $"  SINIF KARNESI\n" +
               $"══════════════════════════\n");
+
 string harfNotu = "";
+
 for (int i = 0; i < ogrenciSayisi; i++)
 {
     Console.Write($"{i + 1}. İsim: "); 
     isim = Console.ReadLine()!;
     isimler[i] = isim;
-    Console.Write("Not: ");
+    Console.Write("  Not: ");
     not = int.Parse(Console.ReadLine()!);
     notlar[i] = not;
     if (not >= 85) harfNotu = "A";
@@ -32,33 +37,35 @@ for (int i = 0; i < ogrenciSayisi; i++)
 //4.En yüksek notu, en düşük notu ve sınıf ortalamasını göster
 int enYuksek = notlar[0];
 int enDusuk = notlar[0];
+int enYuksekIndex = 0;
+int enDusukIndex = 0;
 int toplam = 0;
 double ortalama = 0;
+
+
 for (int i = 0; i < ogrenciSayisi; i++)
 {
     toplam += notlar[i];
 }
 for (int i = 0; i < notlar.Length; i++)
 {
-    if (notlar[i] > enYuksek) enYuksek = notlar[i];
-    if (notlar[i] < enDusuk) enDusuk = notlar[i];
+    if (notlar[i] > enYuksek) { enYuksek = notlar[i]; enYuksekIndex = i; }
+    if (notlar[i] < enDusuk) { enDusuk = notlar[i]; enDusukIndex = i; }
 }
 ortalama = (double)toplam / notlar.Length;
 
-Console.WriteLine($"En yüksek : {enYuksek}\n" +
-                  $"En düşük  : {enDusuk}\n" +
+Console.WriteLine($"En yüksek : {enYuksek} ({isimler[enYuksekIndex]})\n" +
+                  $"En düşük  : {enDusuk}, ({isimler[enDusukIndex]})\n" +
                   $"Ortalaması: {ortalama:N2}");
 
 //5. Ortalamanın üstündeki öğrencileri listele
-int sayac = 0;
 Console.WriteLine($"Ortalama üstündekiler:");
-foreach (int gelen in notlar)
+for(int i = 0; i < ogrenciSayisi; i++ )
 {
-    if (gelen > ortalama) 
+    if (notlar[i] > ortalama) 
     {
-        Console.WriteLine($"- {isimler[sayac]} ({notlar[sayac]})"); 
-    }
-    sayac++;
+        Console.WriteLine($"- {isimler[i]} ({notlar[i]})"); 
+    } 
 }
 
 /*
