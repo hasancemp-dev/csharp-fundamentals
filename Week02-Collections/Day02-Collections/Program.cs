@@ -1,4 +1,5 @@
 ﻿//1:  Boş bir List<string> oluştur, 5 şehir ekle, yazdır
+using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.Serialization;
 
@@ -63,7 +64,7 @@ while (true)
     sayi = int.Parse(Console.ReadLine()!);
     if (sayi == 0) break;
     digerSayilar.Add(sayi);
-} 
+}
 digerSayilar.AddRange(sayilar);
 digerSayilar.Sort();
 List<int> benzersiz = digerSayilar.Distinct().ToList();
@@ -81,14 +82,99 @@ Console.WriteLine($"Kac ogrenci gireceksiniz?");
 int ogrenciSayisi = int.Parse(Console.ReadLine()!);
 Console.WriteLine($"Ogrenci isim ve notunu giriniz:");
 int not;
-for(int i = 0; i < ogrenciSayisi; i++)
+for (int i = 0; i < ogrenciSayisi; i++)
 {
+    Console.Write($"İsim girin: ");
     isim = Console.ReadLine()!;
+    Console.WriteLine("");
+    Console.Write("Not girin: ");
     not = int.Parse(Console.ReadLine()!);
     ogrenciNot.Add(isim, not);
 }
+Console.WriteLine($"Öğrenci ve notlar:");
+foreach (var gelen in ogrenciNot)
+{
+    Console.WriteLine($"{gelen.Key} - {gelen.Value}");
+}
 
 //7:  Dictionary ile telefon rehberi: isim - numara ekle, isimle arama yap
+
+Dictionary<string, long> telefonRehberi = new Dictionary<string, long>();
+Console.WriteLine($"Kac kisi gireceksiniz?");
+int kisiSayisi = int.Parse(Console.ReadLine()!);
+Console.WriteLine($"Isim ve telefon giriniz:");
+long telefon;
+for (int i = 0; i < kisiSayisi; i++)
+{
+    Console.Write($"İsim girin: ");
+    isim = Console.ReadLine()!;
+    Console.WriteLine("");
+    Console.Write("Telefon girin: ");
+    telefon = long.Parse(Console.ReadLine()!);
+    telefonRehberi.Add(isim, telefon);
+}
+Console.Write($"Kimin telefon numarasını öğrenmek istersiniz?: ");
+string arananKisi = Console.ReadLine()!;
+bool bulunduMu = false;
+foreach (var gelen in telefonRehberi)
+{
+    if (gelen.Key == arananKisi) { bulunduMu = true; Console.WriteLine($"{arananKisi}'in/nin telefon no'su: {gelen.Value}"); break; }
+    else bulunduMu = false;
+}
+if (!bulunduMu) Console.WriteLine("Aradığınız kişinin telefonu bulunamadı");
+
 //8:  Dictionary ile kelime sayacı: cümledeki her kelimenin kaç kez geçtiğini say
+Dictionary<string, int> kelimeSayaci = new Dictionary<string, int>();
+Console.Write($"Bir cümle girin: ");
+string girilenCumle = Console.ReadLine()!;
+
+string[] kelimeler = girilenCumle.Split(' ');
+
+foreach (string kelime in kelimeler)
+{
+    if (kelimeSayaci.ContainsKey(kelime))
+        kelimeSayaci[kelime]++;
+    else
+        kelimeSayaci[kelime] = 1;
+}
+
+foreach (var kv in kelimeSayaci)
+    Console.WriteLine($"{kv.Key}: {kv.Value}");
+
 //9:  List<string> içinde arama: kullanıcıdan kelime al, eşleşenleri listele
-//10: Dictionary<string, List<string>> ile ders-öğrenci eşlemesi
+List<string> inputWords = new List<string>();
+Console.WriteLine($"Kaç kelime girmek istersin:");
+int kacKez = int.Parse(Console.ReadLine()!);
+Console.Write("Kelimelerini girebilirsin: ");
+for (int i = 0; i < kacKez; i++)
+{
+    string kelime = Console.ReadLine()!;
+    inputWords.Add(kelime);
+}
+Console.Write("Aramak istediğin kelimeyi (veya harfi) gir: ");
+string arananKelime = Console.ReadLine()!;
+
+Console.WriteLine("Eşleşen kelimeler:");
+foreach (string gelen in inputWords)
+{
+    if (gelen.Contains(arananKelime))
+    {
+        Console.WriteLine(gelen);
+    }
+}
+
+//10: Dictionary<string, List<string>> ile ders-öğrenci eşlemesi 
+Dictionary<string, List<string>> dersOgrencileri = new Dictionary<string, List<string>>();
+
+dersOgrencileri["Matematik"] = new List<string> { "Ali", "Ayşe", "Veli" };
+
+dersOgrencileri["Fizik"] = new List<string> { "Mehmet", "Zeynep" };
+
+foreach (var ders in dersOgrencileri)
+{
+    Console.WriteLine($"\n--- {ders.Key} Dersi Öğrencileri ---");
+    foreach (string ogrenci in ders.Value)
+    {
+        Console.WriteLine($"- {ogrenci}");
+    }
+}
