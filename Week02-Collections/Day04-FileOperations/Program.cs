@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 //1:  Basit bir not defteri: "notlar.txt" adında bir dosyaya 3 satır yazı yazdır ve sonra bu dosyayı okuyup ekrana bas.
+
 string dosyaYolu = "notlar.txt";
 
 string[] yazilacakYazi =
@@ -13,10 +13,12 @@ string[] yazilacakYazi =
 
 bool varMi = File.Exists(dosyaYolu);
 
-if(varMi)
+if (varMi)
 {
     File.WriteAllLines(dosyaYolu, yazilacakYazi);
 }
+else File.WriteAllLines(dosyaYolu, yazilacakYazi);
+
 
 string[] satirSatir = File.ReadAllLines(dosyaYolu);
 foreach (var satir in satirSatir)
@@ -37,9 +39,106 @@ if (!varMi)
 }
 else
     Console.WriteLine("Bu dosya zaten mevcut.");
+
 //3:  Günlük(Log) tutucu: Kullanıcıdan bir mesaj iste. Mesajı "gunluk.txt" dosyasının sonuna (AppendAllText) o anki saat ile birlikte eklesin.
+string gunlugum = "gunluk.txt";
+Dictionary<DateTime, string> gunlukLog = new Dictionary<DateTime, string>();
+
+DateTime yeniGun = DateTime.Now;
+Console.WriteLine("Günlüğe ne yazmak istersin?");
+string yeniLog = Console.ReadLine()!;
+
+gunlukLog.Add(yeniGun, yeniLog);
+
+List<string> yazilacakSatirlar = new List<string>();
+foreach (var kayit in gunlukLog)
+{
+    string satir = kayit.Key.ToShortDateString() + " - " + kayit.Value;
+    yazilacakSatirlar.Add(satir);
+}
+
+File.AppendAllLines(gunlugum, yazilacakSatirlar);
+
+Console.WriteLine("\nKayıt günlüğe başarıyla işlendi!");
+
 //4:  Listeden Dosyaya: 5 elemanlı bir List<string> (iller listesi) oluştur. File.WriteAllLines kullanarak bunu txt'ye dönüştür. Ardından txt'yi tekrar okuyup elemanların sonuna " - Türkiye" yazarak ekrana bas.
+List<string> sehirler = new List<string>()
+{
+    "Bursa",
+    "İzmir",
+    "Ankara",
+    "Mardin",
+    "Kırklareli"
+};
+
+string sehirDosyasi = "sehirler.txt";
+
+
+File.WriteAllLines(sehirDosyasi, sehirler);
+
+string[] sehirlerDizi = File.ReadAllLines(sehirDosyasi);
+foreach (var kayit in sehirlerDizi)
+{
+    Console.WriteLine(kayit + " - Türkiye");
+}
+
 //5:  Mini Veritabanı: Müşteri bilgisi kaydetme. Kullanıcı "1" tuşuna basarsa Ad, Soyad ve Telefon alıp "musteriler.txt" dosyasına virgülle ayrılmış şekilde eklesin (Örn: Hasan, Çelik,55512345). "2"ye basarsa txt dosyasını okuyup müşterileri liste şeklinde göstersin.
+Console.WriteLine("==========MENU==========");
+Console.WriteLine("1) Müşteri Bilgisi Gir\n" +
+                  "2) Müşteri Bilgisi Sırala");
+Console.WriteLine("Seçiminiz: ");
+int secim = int.Parse(Console.ReadLine()!);
+
+string musteriDosyasi = "musteriler.txt";
+
+string musteriAdi;
+string musteriSoyadi ;
+long cepTel;
+
+string adSoyadTel;
+ 
+while (true)
+{
+    switch (secim)
+    {
+        case 1: 
+            Console.Write($"\nMüşteri Ad: ");
+            musteriAdi = Console.ReadLine()!;
+            Console.Write($"\nMüşteri Soyad: ");
+            musteriSoyadi = Console.ReadLine()!;
+            Console.Write($"\nMüşteri Cep Telefonu: ");
+            cepTel = long.Parse(Console.ReadLine()!);
+            adSoyadTel = $"{musteriAdi}, {musteriSoyadi}, {cepTel}"; 
+            File.AppendAllText(musteriDosyasi, adSoyadTel);
+
+            MusteriSirala();
+            break;
+        case 2:
+            MusteriSirala();
+            break;
+        default:
+            throw new Exception("Hatalı giriş! Kontrol ediniz ve tekrar deneyin");
+
+    }
+    Console.Write("\nTekrar veri girişi yapmak ister misiniz? E/H: ");
+    string sonSecim =  Console.ReadLine()!;
+    if (sonSecim == "E") continue;
+    else break;
+}
+
+void MusteriSirala()
+{
+    int sayac = 1;
+    string[] yazdirilacakSatilars = File.ReadAllLines(musteriDosyasi);
+
+    foreach (var kayit in yazdirilacakSatilars)
+    {
+        Console.WriteLine($"{sayac}) {kayit}");
+        sayac++;
+    }
+}
+
+
 //6: (Zorluk: ⭐⭐⭐) Önceki projelerden Hesap Makinesi veya Sayı Tahmin Oyununu düşün. Bu programdaki skorları veya yapılan işlemleri "gecmis.txt" dosyasına kalıcı olarak kaydeden bir yapı kur.
 
 
