@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.ComponentModel.Design;
+using System.IO;
 
 //1:  Basit bir not defteri: "notlar.txt" adında bir dosyaya 3 satır yazı yazdır ve sonra bu dosyayı okuyup ekrana bas.
 
@@ -57,7 +58,7 @@ foreach (var kayit in gunlukLog)
     yazilacakSatirlar.Add(satir);
 }
 
-File.AppendAllLines(gunlugum, yazilacakSatirlar);
+File.AppendAllText(gunlugum, yazilacakSatirlar + "\n");
 
 Console.WriteLine("\nKayıt günlüğe başarıyla işlendi!");
 
@@ -92,24 +93,24 @@ int secim = int.Parse(Console.ReadLine()!);
 string musteriDosyasi = "musteriler.txt";
 
 string musteriAdi;
-string musteriSoyadi ;
+string musteriSoyadi;
 long cepTel;
 
 string adSoyadTel;
- 
+
 while (true)
 {
     switch (secim)
     {
-        case 1: 
+        case 1:
             Console.Write($"\nMüşteri Ad: ");
             musteriAdi = Console.ReadLine()!;
             Console.Write($"\nMüşteri Soyad: ");
             musteriSoyadi = Console.ReadLine()!;
             Console.Write($"\nMüşteri Cep Telefonu: ");
             cepTel = long.Parse(Console.ReadLine()!);
-            adSoyadTel = $"{musteriAdi}, {musteriSoyadi}, {cepTel}"; 
-            File.AppendAllText(musteriDosyasi, adSoyadTel);
+            adSoyadTel = $"{musteriAdi}, {musteriSoyadi}, {cepTel}";
+            File.AppendAllText(musteriDosyasi, adSoyadTel + "\n");
 
             MusteriSirala();
             break;
@@ -121,7 +122,7 @@ while (true)
 
     }
     Console.Write("\nTekrar veri girişi yapmak ister misiniz? E/H: ");
-    string sonSecim =  Console.ReadLine()!;
+    string sonSecim = Console.ReadLine()!;
     if (sonSecim == "E") continue;
     else break;
 }
@@ -141,39 +142,191 @@ void MusteriSirala()
 
 //6: (Zorluk: ⭐⭐⭐) Önceki projelerden Hesap Makinesi veya Sayı Tahmin Oyununu düşün. Bu programdaki skorları veya yapılan işlemleri "gecmis.txt" dosyasına kalıcı olarak kaydeden bir yapı kur.
 
+Console.WriteLine("Hangi uygulamayı açalım?" +
+                  "1) Sayı Tahmin" +
+                  "2) Hesap Makinesi" +
+                  "Seçimin:");
+secim = int.Parse(Console.ReadLine()!);
 
-/*
- * 1. Dosya Var Mı Kontrolü (Exists)
-csharp
-string dosyaYolu = "rehber.txt";
-bool varMi = File.Exists(dosyaYolu); // Varsa true, yoksa false
-
-2. Dosyaya Yazma (WriteAllText & WriteAllLines)
-Eski veriyi siler, komple baştan yazar:
-
-csharp
-File.WriteAllText("mesaj.txt", "Merhaba Dünya!"); // Tek bir metin yazar
-csharp
-string[] ogrenciler = { "Ali", "Ayşe", "Veli" };
-File.WriteAllLines("ogrenciler.txt", ogrenciler); // Listenin her elemanını alt alta yazar
-3. Dosyanın Sonuna Ekleme (AppendAllText & AppendAllLines)
-Eski veriye dokunmaz, en altına yeni satır ekler:
-
-csharp
-File.AppendAllText("log.txt", "Sisteme saat 10:00'da giriş yapıldı.\n"); // Sonuna ekler
-4. Dosyadan Okuma (ReadAllText & ReadAllLines)
-csharp
-string tumIcerik = File.ReadAllText("mesaj.txt"); // Dosyadaki her şeyi tek parça string olarak alır.
-csharp
-string[] satirSatir = File.ReadAllLines("ogrenciler.txt"); // Her satırı dizinin bir elemanı yapar.
-foreach (string satir in satirSatir)
+while (true)
 {
-    Console.WriteLine(satir);
-}
-5. Dosya Silme (Delete)
-csharp
-File.Delete("eski_dosya.txt");
-*/
+    switch (secim)
+    {
+        case 1:
+            string logSayiTahmin = "SayiTahminScores.txt";
+            DateTime tarihST = DateTime.Now;
+            Random sayi = new Random();
 
+            int oyunSayisi = 1;
+            List<string> oyunlar = new List<string>();
+            string secimString;
+
+            while (true)
+            {
+                bool bulduMu = false;
+                Console.Clear();
+                Console.WriteLine(" ===========SAYI TAHMİN OYUNU===========");
+                int rastgeleSayi = sayi.Next(1, 101);
+                Console.WriteLine($"A)1-100 arası bir sayı tuttum. 10 hakkın var! \n" +
+                                  $"B)Geçmiş skorları görüntüle");
+                string ilksecim = Console.ReadLine()!;
+                switch (ilksecim)
+                {
+                    case "A":
+                        for (int hak = 1; hak <= 10; hak++)
+                        {
+                            Console.WriteLine("");
+                            Console.Write($"Tahminini gir: ");
+                            int tahmin = int.Parse(Console.ReadLine()!);
+                            if (tahmin > rastgeleSayi) Console.Write(" benimki daha düşük, in");
+                            else if (tahmin < rastgeleSayi) Console.Write(" benimki daha yüksek, çık");
+                            else if (tahmin == rastgeleSayi)
+                            {
+                                Console.WriteLine($"{hak}. denemede buldun");
+                                bulduMu = true;
+                                oyunlar.Add($"Oyun {oyunSayisi}: {hak} deneme");
+                                File.AppendAllText(logSayiTahmin, $"Oyun {oyunSayisi}: {hak} deneme - " + tarihST + "\n");
+                                oyunSayisi++;
+                                break;
+                            }
+                        }
+                        break;
+                    case "B":
+                        if (!File.Exists(logSayiTahmin)) 
+                            Console.WriteLine("Böyle bir dosya yok!");
+                        // bir defa gözükür o da ilk bu kodu yazdıktan hemen sonra oyun oynanmadan geçmiş görüntülenirse.
+                        else
+                        {
+                            string[] gecmis = File.ReadAllLines(logSayiTahmin);
+                            int sayac = 1;
+                            foreach (var kayit in gecmis)
+                            {
+                                Console.WriteLine($"{sayac}) {kayit}");
+                                sayac++;
+                            }
+                        }
+
+                        break;
+                }
+
+                if (!bulduMu)
+                {
+                    Console.WriteLine("Hakkını doldurdun :( ");
+                    oyunlar.Add($"Oyun {oyunSayisi}: Bulamadı");
+                    File.AppendAllText(logSayiTahmin, $"Oyun {oyunSayisi}: Bulamadı - " + tarihST + "\n");
+                    oyunSayisi++;
+                    Console.WriteLine($"Yeni oyun? E/H: ");
+                    secimString = Console.ReadLine()!;
+                    if (secimString == "E") continue;
+                    else break;
+                }
+                if (bulduMu)
+                {
+                    Console.WriteLine("Yeni oyun? E/H: ");
+                    secimString = Console.ReadLine()!;
+                    if (secimString == "E") continue;
+                    else break;
+                }
+
+            }
+
+
+            foreach (var gelen in oyunlar)
+            {
+                Console.WriteLine(gelen);
+            }
+            break;
+
+        case 2:
+            string logHesapMakinesi = "HesapMakineGecmis.txt";
+            DateTime tarihHM = DateTime.Now;
+            Console.WriteLine("Hoşgeldin!");
+            while (true)
+            {
+                Console.Write("1. Sayı: ");
+                double ilkSayi = double.Parse(Console.ReadLine()!);
+
+                Console.Write("2. Sayı: ");
+
+                double ikinciSayi = double.Parse(Console.ReadLine()!);
+
+                Console.Write("İşlem operatörü seçin: \n" +
+                              "Toplama +\n" +
+                              "Çıkarma - \n" +
+                              "Çarpma  * \n" +
+                              "Bölme   / \n" +
+                              "Mod     %\n" +
+                              "Geçmiş: G");
+                string islem = Console.ReadLine()!;
+                double sonuc = 0;
+                bool gecerliIslem = true;
+                switch (islem)
+                {
+                    case "+":
+                        sonuc = ilkSayi + ikinciSayi;
+                        File.AppendAllText(logHesapMakinesi, $" {ilkSayi} + {ikinciSayi} = {sonuc} - " + tarihHM + "\n");
+                        break;
+                    case "-":
+                        sonuc = ilkSayi - ikinciSayi;
+                        File.AppendAllText(logHesapMakinesi, $" {ilkSayi} - {ikinciSayi} = {sonuc} - " + tarihHM + "\n");
+                        break;
+                    case "*":
+                        sonuc = ilkSayi * ikinciSayi;
+                        File.AppendAllText(logHesapMakinesi, $" {ilkSayi} * {ikinciSayi}= {sonuc} - " + tarihHM + "\n");
+                        break;
+                    case "/":
+                        if (ikinciSayi != 0)
+                        {
+                            sonuc = ilkSayi / ikinciSayi;
+                            File.AppendAllText(logHesapMakinesi, $" {ilkSayi} / {ikinciSayi} = {sonuc} - " + tarihHM + "\n");
+                        }
+                        else
+                        {
+                            Console.Write("Bölme işleminde ikinci sayı 0 olamaz");
+                            gecerliIslem = false;
+                        }
+                        break;
+                    case "%":
+                        if (ikinciSayi != 0)
+                        {
+                            sonuc = ilkSayi % ikinciSayi;
+                            File.AppendAllText(logHesapMakinesi, $" {ilkSayi} % {ikinciSayi} = {sonuc} - " + tarihHM + "\n");
+                        }
+                        else
+                        {
+                            Console.Write("Mod işleminde ikinci sayı 0 olamaz.");
+                            gecerliIslem = false;
+                        }
+                        break;
+                    case "G":
+                        string[] gecmis = File.ReadAllLines(logHesapMakinesi);
+                        int sayac = 1;
+                        foreach (var kayit in gecmis)
+                        {
+                            Console.WriteLine($"{sayac}) {kayit}");
+                            sayac++;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Geçersiz işlem ya da operatör");
+                        gecerliIslem = false;
+                        break;
+                }
+                if (gecerliIslem)
+                {
+                    Console.WriteLine($"İşlem sonucu: {sonuc}");
+                }
+                Console.Write("Başka işlem yapmak ister misiniz? E/H: ");
+                secimString = Console.ReadLine()!;
+                if (secimString == "E") continue;
+                else { Console.WriteLine("Hoşçakal!"); break; }
+            }
+            break;
+        default:
+            throw new Exception("Hatalı seçim! Konrol edip tekrar deneyin");
+
+
+    }
+}
 
 
