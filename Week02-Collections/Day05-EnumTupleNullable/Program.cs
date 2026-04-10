@@ -126,10 +126,67 @@ int gercekYas = yas2 ?? 18;
 Console.WriteLine($"Yaşınız: {gercekYas}");
 
 //9:  Bir öğrenci kaydı oluştur: isim(string), yas(int ?), not(double ?).Null olanları "Bilgi yok" olarak göster. 
+List<string> ogrenciler = new List<string>();
+
+Console.WriteLine("Öğrenci Kayıt Sistemine Hoş Geldiniz");
+
+// 1. İsim Girişi
+Console.Write("Öğrenci ad-soyadını girin: ");
+string? adSoyad = Console.ReadLine();
+// Eğer isim boş girildiyse (sadece enter), null kabul edelim
+if (string.IsNullOrWhiteSpace(adSoyad)) adSoyad = null;
+
+// 2. Yaş Girişi
+Console.Write("Öğrenci yaşını girin: ");
+string? yasVerisi = Console.ReadLine();
+yas = int.TryParse(yasVerisi, out int yasSonuc) ? yasSonuc : (int?)null;
+
+// 3. Not Girişi (Soru double? istemişti, double yapalım)
+Console.Write("Öğrenci notunu girin: ");
+string? notVerisi = Console.ReadLine();
+double? ogrenciNotu = double.TryParse(notVerisi, out double notSonuc) ? notSonuc : (double?)null;
+
+// 4. Çıktıyı Hazırlama (İstenen: Null ise "Bilgi yok" yaz)
+// Burada ?? operatörü: "Eğer soldaki null ise sağdaki metni yaz" der.
+string ogrenciKaydi = $"Öğrenci Ad-Soyad: {adSoyad ?? "Bilgi yok"}\n" +
+                     $"Yaşı            : {yas?.ToString() ?? "Bilgi yok"}\n" +
+                     $"Notu            : {ogrenciNotu?.ToString() ?? "Bilgi yok"}\n" +
+                     $"---------------------------";
+
+ogrenciler.Add(ogrenciKaydi);
+
+// Listeyi ekrana yazdıralım
+Console.WriteLine("\nKayıt Tamamlandı!\n");
+foreach (var kayit in ogrenciler)
+{
+    Console.WriteLine(kayit);
+}
 
 //10: Bir metod yaz: iki nullable int alıp toplamını döndürsün. Birisi null ise diğerini, ikisi de null ise 0 döndürsün.
+Console.WriteLine($"2 adet sayı girin lütfen");
+
+Console.Write($"\n1. sayi: ");
+string? inputSayi1 = Console.ReadLine();
+int? sayi1 = int.TryParse(inputSayi1, out int s1) ? s1 : (int?)null;
 
 
+Console.Write($"\n2. sayi: ");
+string? inputSayi2 = Console.ReadLine();
+int? sayi2 = int.TryParse(inputSayi2, out int s2) ? s2 : (int?)null;
+
+Console.WriteLine(Topla(sayi1, sayi2));
+
+
+     
+//========NULLABLE========
+int Topla(int? sayi1, int? sayi2)
+{
+    if (sayi1 == null && sayi2 == null) return 0;
+    if (sayi1 == null) return sayi2.Value;
+    if (sayi2 == null) return sayi1.Value;
+
+    return sayi1.Value + sayi2.Value;
+}
 // ========ENUM========
 enum Mevsimler
 {
@@ -159,4 +216,3 @@ enum Yetki
 
 
 
-//========NULLABLE========
