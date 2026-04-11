@@ -1,4 +1,4 @@
-# 📚 C# Fundamentals - Öğrenme Serüveni
+ # 📚 C# Fundamentals - Öğrenme Serüveni
 
 Bu repository, C# dilini en temel konulardan başlayıp ileri seviye kurumsal mimarilere (Enterprise Architectures) kadar öğrenme sürecimi adım adım belgelediğim bir çalışma alanıdır. 
 
@@ -23,7 +23,7 @@ Uygulamalarda veriyi geçici (RAM/Koleksiyonlar) ve kalıcı (Dosya/FileIO) olar
 - [x] Day 04: File IO (StreamWriter, ReadAllLines, AppendAllText ile Kalıcı Kayıt / Loglama)
 - [x] Day 05: Enum, Tuple, Nullable (Tip güvenliği ve çoklu veri dönüşü)
 - [x] Day 06: Weekly Project - "Kişi Rehberi Uygulaması" (CRUD, Filtreleme, Dosya Entegrasyonu)
-- [x] Day 06.1: Challenge Project - "Mini Depo Yönetim Sistemi"
+- [ ] Day 06.1: Challenge Project - "Mini Depo Yönetim Sistemi"
 
 ### 🚀 Week 03 - Object Oriented Programming (Güncel)
 Gerçek dünya nesnelerini kodlamaya dökme sanatına giriş.
@@ -52,3 +52,12 @@ Her bir gün kendi başına bağımsız bir Console (.NET 9) projesidir. İlgili
 cd Week02-Collections/Day06-WeeklyProject
 dotnet run
 ```
+
+## 📅 İlerleme
+
+- [x] Week 01 - Day 01: Variables, Data Types, Type Conversions
+- [ ] Week 01 - Day 02: If-Else, Switch-Case, Ternary Operator
+- [ ] Week 01 - Day 03: For, While, Do-While, Foreach
+- [ ] Week 01 - Day 04: Arrays
+- [ ] Week 01 - Day 05: Methods
+- [ ] Week 01 - Day 06: Weekly Project
