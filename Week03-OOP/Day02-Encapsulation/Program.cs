@@ -47,6 +47,113 @@ while (true)
 //2:  "Urun" class'ı yaz. Ad, Fiyat, Stok özellikleri olsun.
 //    Fiyat negatif olamaz, Stok negatif olamaz.
 //    SatisYap(int adet) metodu olsun: stok yetmiyorsa exception fırlatsın.
+//Urun kalem = new Urun { Ad = "kalem", Fiyat = 10, Stok = 100 };
+//Urun silgi = new Urun { Ad = "silgi", Fiyat = 15, Stok = 75 };
+//Urun cetvel = new Urun { Ad = "cetvel", Fiyat = 50, Stok = 120 };
+//Urun defter = new Urun { Ad = "defter", Fiyat = 40, Stok = 83 };
+
+//List<Urun> urunler = new List<Urun>()
+//{
+//   kalem,
+//   silgi,
+//   cetvel,
+//   defter
+//};
+//Console.WriteLine("Kırtasiyemize hoş geldiniz!");
+//Console.Write("Alışveriş öncesinde harçlık miktarınızı girin: ");
+//string? girdi = Console.ReadLine();
+//double? harclik = double.TryParse(girdi, out double deger) ? deger : (double?)null;
+//if (harclik == null)
+//    throw new ArgumentException("Alışverişe başlamak için mutlaka bir değer girmelisiniz");
+//else
+//{
+//    while (true)
+//    {
+//        Console.Clear();
+//        Console.WriteLine("Almak istediğiniz ürünü seçin");
+//        Console.WriteLine("=-=-=-=-=-=MENU=-=-=-=-=-=\n" +
+//                          "1)Kalem\n" +
+//                          "2)Silgi\n" +
+//                          "3)Cetvel\n" +
+//                          "4)Defter\n" +
+//                          "5)Harclik tutar ekleme\n" +
+//                          "6)Cikis");
+//        int? secim = int.Parse(Console.ReadLine());
+//        if (secim != null)
+//        {
+//            double? toplam = 0.00;
+//            switch (secim)
+//            {
+//                case 1:
+//                    Console.WriteLine("Kaç adet istersiniz?");
+//                    girdi = Console.ReadLine();
+//                    int? adet = int.TryParse(girdi, out int degerKalem) ? degerKalem : (int?)null;
+//                    toplam = kalem.Fiyat * adet;
+
+//                    if ((harclik - toplam) < 0)
+//                    {
+//                        Console.WriteLine("Yetersiz bakiye");
+//                    }
+//                    else
+//                    {
+//                        kalem.SatisYap(adet);
+//                        harclik -= toplam;
+//                        Console.WriteLine($"Satış yapıldı");
+//                    }
+
+//                    Console.WriteLine($"Güncel bakiye: {harclik}");
+//                    break;
+//                case 2:
+//                    Console.WriteLine("Kaç adet istersiniz?");
+//                    girdi = Console.ReadLine();
+//                    adet = int.TryParse(girdi, out int degerSilgi) ? degerSilgi : (int?)null;
+//                    toplam = silgi.Fiyat * adet;
+//                    if ((harclik - toplam) < 0)
+//                    {
+//                        Console.WriteLine("Yetersiz bakiye");
+//                    }
+//                    else
+//                    {
+//                        silgi.SatisYap(adet);
+//                        harclik -= toplam;
+//                        Console.WriteLine($"Satış yapıldı");
+//                    }
+
+//                    Console.WriteLine($"Güncel bakiye: {harclik}");
+//                    break;
+//                case 3:
+//                    Console.WriteLine("Kaç adet istersiniz?");
+//                    girdi = Console.ReadLine();
+//                    adet = int.TryParse(girdi, out int degerCetvel) ? degerCetvel : (int?)null;
+//                    toplam = cetvel.Fiyat * adet;
+//                    if ((harclik - toplam) < 0)
+//                    {
+//                        Console.WriteLine("Yetersiz bakiye");
+//                    }
+//                    else
+//                    {
+//                        cetvel.SatisYap(adet);
+//                        harclik -= toplam;
+//                        Console.WriteLine($"Satış yapıldı");
+//                    }
+
+//                    Console.WriteLine($"Güncel bakiye: {harclik}");
+//                    break;
+//                case 4:
+//                    Console.WriteLine("Kaç adet istersiniz?");
+//                    girdi = Console.ReadLine();
+//                    adet = int.TryParse(girdi, out int degerDefter) ? degerDefter : (int?)null;
+//                    toplam = defter.Fiyat * adet;
+//                    if ((harclik - toplam) < 0)
+//                    {
+//                        Console.WriteLine("Yetersiz bakiye");
+//                    }
+//                    else
+//                    {
+//                        defter.SatisYap(adet);
+//                        harclik -= toplam;
+//                        Console.WriteLine($"Satış yapıldı");
+//                    }
 
 
 Urun kalem = new Urun { Ad = "kalem", Fiyat = 10, Stok = 100 };
