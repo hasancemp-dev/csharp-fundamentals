@@ -303,11 +303,8 @@ else
 //    -Constructor ile Ad, Soyad ve OgrenciNo zorunlu olsun
 
 Ogrenci ogrenci = new Ogrenci("Hasan Cem", "Pınar", 32);
-Ogrenci ogrenci2 = new Ogrenci("Mert Ali", "Pınar", 2);
 ogrenci.Yas = 12;
-ogrenci2.Yas = 16;
 ogrenci.KendiniTanit();
-ogrenci2.KendiniTanit();
 
 //4:  "Araba" class'ı yaz. 
 //    - Motor hacmi(cc) olsun: 600 - 7000 arası olmalı
