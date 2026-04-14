@@ -27,10 +27,10 @@ Uygulamalarda veriyi geçici (RAM/Koleksiyonlar) ve kalıcı (Dosya/FileIO) olar
 
 ### 🚀 Week 03 - Object Oriented Programming (Güncel)
 Gerçek dünya nesnelerini kodlamaya dökme sanatına giriş.
-- [ ] Day 01: Classes and Objects (Sınıflar ve Nesneler) *(Üzerinde çalışılıyor)*
-- [ ] Day 02: Encapsulation & Properties
-- [ ] Day 03: Inheritance (Kalıtım)
-- [ ] Day 04: Polymorphism & Virtual Methods
+- [x] Day 01: Classes and Objects (Sınıflar ve Nesneler) *(Üzerinde çalışılıyor)*
+- [x] Day 02: Encapsulation & Properties
+- [x] Day 03: Inheritance (Kalıtım)
+- [x] Day 04: Polymorphism & Virtual Methods
 - [ ] Day 05: Abstraction (Abstract Classes & Interfaces)
 - [ ] Day 06: Weekly Project
 
