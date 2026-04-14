@@ -1,8 +1,8 @@
- # 📚 C# Fundamentals - Öğrenme Serüveni
+# 📚 C# Fundamentals - Öğrenme Serüveni
 
 Bu repository, C# dilini en temel konulardan başlayıp ileri seviye kurumsal mimarilere (Enterprise Architectures) kadar öğrenme sürecimi adım adım belgelediğim bir çalışma alanıdır. 
 
-Sıfırdan başlayıp nesne yönelimli programlama, hata yönetimi ve dosya işlemlerini kavrayarak ilerliyor; bir yandan da kendi ERP sistemimi yazacak altyapıyı kuruyorum.
+Sıfırdan başlayıp nesne yönelimli programlama, hata yönetimi ve dosya işlemlerini kavrayarak ilerliyor; bir yandan da kendi **Tekstil ERP** sistemimi yazacak altyapıyı kuruyorum.
 
 ## 📂 Klasör Yapısı ve İlerleme
 
@@ -25,17 +25,24 @@ Uygulamalarda veriyi geçici (RAM/Koleksiyonlar) ve kalıcı (Dosya/FileIO) olar
 - [x] Day 06: Weekly Project - "Kişi Rehberi Uygulaması" (CRUD, Filtreleme, Dosya Entegrasyonu)
 - [ ] Day 06.1: Challenge Project - "Mini Depo Yönetim Sistemi"
 
-### 🚀 Week 03 - Object Oriented Programming (Güncel)
-Gerçek dünya nesnelerini kodlamaya dökme sanatına giriş.
-- [x] Day 01: Classes and Objects (Sınıflar ve Nesneler) *(Üzerinde çalışılıyor)*
-- [x] Day 02: Encapsulation & Properties
-- [x] Day 03: Inheritance (Kalıtım)
-- [x] Day 04: Polymorphism & Virtual Methods
-- [ ] Day 05: Abstraction (Abstract Classes & Interfaces)
-- [ ] Day 06: Weekly Project
+### ✅ Week 03 - Object Oriented Programming (Tamamlandı)
+Gerçek dünya nesnelerini kodlamaya dökme sanatına ve büyük çaplı endüstriyel mimarilere giriş!
+- [x] Day 01: Classes and Objects (Sınıfların, Nesnelerin ve Metodların oluşturulması)
+- [x] Day 02: Encapsulation & Properties (Veri Gizleme, Property Getter/Setter, Constructor Overloading)
+- [x] Day 03: Inheritance (Kalıtım, Base Sınıflar, Virtual / Override Metodlar)
+- [x] Day 04: Polymorphism (Çok Biçimlilik, Listeler Üzerinde Dinamik Sınıf Yönetimi)
+- [x] Day 05: Abstraction (Abstract Classes, Interfaces, Dependency Injection Temelleri)
+- [x] Day 06: Weekly Project - "Melba Tekstil Mini-ERP Sipariş Modülü" (Tüm OOP Kurallarıyla Baştan Sona Mimari)
+
+### 🚀 Week 04 - Advanced Topics (Güncel)
+Performanslı, hatasız ve asenkron modern teknolojiler. Derya denize açılıyoruz!
+- [ ] Generics (`List<T>` mimarisini kendi başımıza kurmak)
+- [ ] LINQ (Koleksiyonlarda Veritabanı gibi sorgular atmak)
+- [ ] Delegates & Events
+- [ ] Async / Await (Asenkron Programlama)
+- [ ] Extension Methods
 
 ### 📅 Gelecek Planı
-- **Week 04:** Advanced Topics (Generics, LINQ, Async/Await)
 - **Week 05+:** ASP.NET Core MVC / Web API & Entity Framework Core (Tekstil ERP Projesine Geçiş)
 
 ## 🛠️ Kullanılan Teknolojiler
@@ -46,18 +53,9 @@ Gerçek dünya nesnelerini kodlamaya dökme sanatına giriş.
 
 ## 🚀 Nasıl Çalıştırılır
 
-Her bir gün kendi başına bağımsız bir Console (.NET 9) projesidir. İlgili klasöre giderek kodu çalıştırabilirsiniz:
+Her bir gün kendi başına bağımsız bir Console (.NET 9) projesidir. İlgili klasöre giderek kodu çalıştırabilirsiniz (Örnek: Week 3 Final Projesi):
 
 ```bash
-cd Week02-Collections/Day06-WeeklyProject
+cd Week03-OOP/Day06-WeeklyProject
 dotnet run
 ```
-
-## 📅 İlerleme
-
-- [x] Week 01 - Day 01: Variables, Data Types, Type Conversions
-- [ ] Week 01 - Day 02: If-Else, Switch-Case, Ternary Operator
-- [ ] Week 01 - Day 03: For, While, Do-While, Foreach
-- [ ] Week 01 - Day 04: Arrays
-- [ ] Week 01 - Day 05: Methods
-- [ ] Week 01 - Day 06: Weekly Project
