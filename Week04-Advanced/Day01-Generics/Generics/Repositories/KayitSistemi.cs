@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Day01_Generics.Generics.Repositories
+﻿namespace Day01_Generics.Generics.Repositories
 {
     internal class KayitSistemi<T>
     {
