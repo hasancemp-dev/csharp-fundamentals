@@ -53,14 +53,14 @@ depo.StokDusur(10);
 // Konsol penceresinin işlemler bittikten sonra hemen kapanmasını engellemek için, 
 // kullanıcıdan klavyeden bir Enter tuşuna basmasını bekliyoruz.
 Console.ReadLine();
-        
-        // =======================================================================
-        // EVENT TETİKLENDİĞİNDE ÇALIŞACAK OLAN METOTLAR (EVENT HANDLERS)
-        // =======================================================================
 
-        // Bu metot, en baştaki şablona (delegate) tam uyar: void döndürür, int parametre alır.
-        // Olay gerçekleştiğinde bu kod bloğu çalışır ve ekrana uyarı basar.
-        static void AlarmVer(int miktar)
+// =======================================================================
+// EVENT TETİKLENDİĞİNDE ÇALIŞACAK OLAN METOTLAR (EVENT HANDLERS)
+// =======================================================================
+
+// Bu metot, en baştaki şablona (delegate) tam uyar: void döndürür, int parametre alır.
+// Olay gerçekleştiğinde bu kod bloğu çalışır ve ekrana uyarı basar.
+static void AlarmVer(int miktar)
 {
     // \n karakteri konsolda bir alt satıra geçmek için kullanılır.
     Console.WriteLine($"\n[UYARI] DIIIT! Stok tehlikeli seviyede: {miktar}");
